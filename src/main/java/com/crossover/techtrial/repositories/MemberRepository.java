@@ -11,10 +11,14 @@ import com.crossover.techtrial.model.Member;
 
 /**
  * Person repository for basic operations on Person entity.
+ * 
  * @author crossover
  */
-@RestResource(exported=false)
+@RestResource(exported = false)
 public interface MemberRepository extends PagingAndSortingRepository<Member, Long> {
-  Optional<Member> findById(Long id);
-  List<Member> findAll();
+
+	Optional<Member> findById(Long id);
+
+	List<Member> findAll();
+
 }

@@ -23,35 +23,40 @@ import com.crossover.techtrial.repositories.TransactionRepository;
  */
 @RestController
 public class TransactionController {
-  
-  @Autowired TransactionRepository transactionRepository;
-  
-  @Autowired BookRepository bookRepository;
-  
-  @Autowired MemberRepository memberRepository;
-  /*
-   * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
-   * Example Post Request :  { "bookId":1,"memberId":33 }
-   */
-  @PostMapping(path = "/api/transaction")
-  public ResponseEntity<Transaction> issueBookToMember(@RequestBody Map<String, Long> params){
-    
-    Long bookId = params.get("bookId");
-    Long memberId = params.get("memberId");
-    Transaction transaction = new Transaction();
-    transaction.setBook(bookRepository.findById(bookId).orElse(null));
-    transaction.setMember(memberRepository.findById(memberId).get());
-    transaction.setDateOfIssue(LocalDateTime.now());    
-    return ResponseEntity.ok().body(transactionRepository.save(transaction));
-  }
-  /*
-   * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
-   */
-  @PatchMapping(path= "/api/transaction/{transaction-id}/return")
-  public ResponseEntity<Transaction> returnBookTransaction(@PathVariable(name="transaction-id") Long transactionId){
-    Transaction transaction = transactionRepository.findById(transactionId).get();
-    transaction.setDateOfReturn(LocalDateTime.now());
-    return ResponseEntity.ok().body(transaction);
-  }
+
+	@Autowired
+	TransactionRepository transactionRepository;
+
+	@Autowired
+	BookRepository bookRepository;
+
+	@Autowired
+	MemberRepository memberRepository;
+
+	/*
+	 * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS Example Post
+	 * Request : { "bookId":1,"memberId":33 }
+	 */
+	@PostMapping(path = "/api/transaction")
+	public ResponseEntity<Transaction> issueBookToMember(@RequestBody Map<String, Long> params) {
+		Long bookId = params.get("bookId");
+		Long memberId = params.get("memberId");
+		Transaction transaction = new Transaction();
+		transaction.setBook(bookRepository.findById(bookId).orElse(null));
+		transaction.setMember(memberRepository.findById(memberId).get());
+		transaction.setDateOfIssue(LocalDateTime.now());
+		return ResponseEntity.ok().body(transactionRepository.save(transaction));
+	}
+
+	/*
+	 * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
+	 */
+	@PatchMapping(path = "/api/transaction/{transaction-id}/return")
+	public ResponseEntity<Transaction> returnBookTransaction(
+			@PathVariable(name = "transaction-id") Long transactionId) {
+		Transaction transaction = transactionRepository.findById(transactionId).get();
+		transaction.setDateOfReturn(LocalDateTime.now());
+		return ResponseEntity.ok().body(transaction);
+	}
 
 }

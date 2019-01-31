@@ -56,7 +56,7 @@ public class MemberControllerTest {
         "/api/member", member, Member.class);
     
     Assert.assertEquals("test 1", response.getBody().getName());
-    Assert.assertEquals(200,response.getStatusCode().value());
+    Assert.assertEquals(200, response.getStatusCode().value());
     
     //cleanup the user
     memberRepository.deleteById(response.getBody().getId());

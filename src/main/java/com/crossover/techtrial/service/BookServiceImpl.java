@@ -17,30 +17,29 @@ import com.crossover.techtrial.repositories.TransactionRepository;
  *
  */
 @Service
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
-  @Autowired
-  BookRepository bookRepository;
-  
-  @Autowired
-  TransactionRepository transactionRepository;
-  
-  @Override
-  public List<Book> getAll() {
-    List<Book> personList = new ArrayList<>();
-    bookRepository.findAll().forEach(personList::add);
-    return personList;
-    
-  }
-  
-  public Book save(Book p) {
-    return bookRepository.save(p);
-  }
+	@Autowired
+	BookRepository bookRepository;
 
-  @Override
-  public Book findById(Long bookId) {
-    Optional<Book> dbPerson = bookRepository.findById(bookId);
-    return dbPerson.orElse(null);
-  }
+	@Autowired
+	TransactionRepository transactionRepository;
+
+	@Override
+	public List<Book> getAll() {
+		List<Book> personList = new ArrayList<>();
+		bookRepository.findAll().forEach(personList::add);
+		return personList;
+	}
+
+	public Book save(Book p) {
+		return bookRepository.save(p);
+	}
+
+	@Override
+	public Book findById(Long bookId) {
+		Optional<Book> dbPerson = bookRepository.findById(bookId);
+		return dbPerson.orElse(null);
+	}
 
 }

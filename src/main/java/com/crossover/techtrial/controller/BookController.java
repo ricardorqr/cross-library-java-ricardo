@@ -16,41 +16,44 @@ import com.crossover.techtrial.service.BookService;
 
 /**
  * BookController for Book related APIs.
+ * 
  * @author crossover
  *
  */
 @RestController
 public class BookController {
-  
-  @Autowired 
-  private BookService bookService;
-  
-  /*
-   * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
-   */
-  @GetMapping(path ="/api/book")
-  public ResponseEntity<List<Book>> getBooks() {
-    return ResponseEntity.ok(bookService.getAll());
-  }
 
-  /*
-   * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
-   */
-  @PostMapping(path ="/api/book")
-  public ResponseEntity<Book> saveBook(@RequestBody Book book) {
-    return ResponseEntity.ok(bookService.save(book));
-  }
-  
-  /*
-   * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
-   */
-  @GetMapping(path = "/api/book/{book-id}")
-  public ResponseEntity<Book> getRideById(@PathVariable(name="book-id",required=true)Long bookId){
-    Book book = bookService.findById(bookId);
-    if (book!=null)
-      return ResponseEntity.ok(book);
-    return ResponseEntity.notFound().build();
-  }
+	@Autowired
+	private BookService bookService;
 
-  
+	/*
+	 * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
+	 */
+	@GetMapping(path = "/api/book")
+	public ResponseEntity<List<Book>> getBooks() {
+		return ResponseEntity.ok(bookService.getAll());
+	}
+
+	/*
+	 * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
+	 */
+	@PostMapping(path = "/api/book")
+	public ResponseEntity<Book> saveBook(@RequestBody Book book) {
+		return ResponseEntity.ok(bookService.save(book));
+	}
+
+	/*
+	 * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
+	 */
+	@GetMapping(path = "/api/book/{book-id}")
+	public ResponseEntity<Book> getRideById(@PathVariable(name = "book-id", required = true) Long bookId) {
+		Book book = bookService.findById(bookId);
+
+		if (book != null) {
+			return ResponseEntity.ok(book);
+		}
+
+		return ResponseEntity.notFound().build();
+	}
+
 }
