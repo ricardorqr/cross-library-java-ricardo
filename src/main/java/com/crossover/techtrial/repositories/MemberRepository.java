@@ -18,6 +18,8 @@ import com.crossover.techtrial.model.Member;
 public interface MemberRepository extends PagingAndSortingRepository<Member, Long> {
 
 	Optional<Member> findById(Long id);
+	
+	Optional<Member> findByEmail(String email);
 
 	List<Member> findAll();
 

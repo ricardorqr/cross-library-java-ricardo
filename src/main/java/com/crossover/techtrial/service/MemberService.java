@@ -20,4 +20,6 @@ public interface MemberService {
 
 	public List<Member> findAll();
 
+	public Member findEmail(String email);
+
 }

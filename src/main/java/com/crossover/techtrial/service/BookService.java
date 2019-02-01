@@ -16,7 +16,7 @@ public interface BookService {
 
 	public List<Book> getAll();
 
-	public Book save(Book p);
+	public Book save(Book book);
 
 	public Book findById(Long bookId);
 

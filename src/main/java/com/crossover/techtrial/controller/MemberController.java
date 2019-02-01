@@ -6,6 +6,7 @@ package com.crossover.techtrial.controller;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.crossover.techtrial.dto.TopMemberDTO;
+import com.crossover.techtrial.exceptions.Unauthorized401Exception;
 import com.crossover.techtrial.model.Member;
 import com.crossover.techtrial.service.MemberService;
 
@@ -28,13 +31,18 @@ import com.crossover.techtrial.service.MemberService;
 public class MemberController {
 
 	@Autowired
-	MemberService memberService;
+	private MemberService memberService;
 
 	/*
 	 * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
 	 */
 	@PostMapping(path = "/api/member")
 	public ResponseEntity<Member> register(@RequestBody Member p) {
+		Member member = memberService.findEmail(p.getEmail());
+		if (member == null) {
+			throw new Unauthorized401Exception("Email used already");
+		}
+		
 		return ResponseEntity.ok(memberService.save(p));
 	}
 
