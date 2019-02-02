@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.crossover.techtrial.model.Transaction;
 import com.crossover.techtrial.repositories.TransactionRepository;
@@ -17,6 +18,7 @@ import com.crossover.techtrial.repositories.TransactionRepository;
  * @author cossover
  *
  */
+@Service
 public class TransactionServiceImpl implements TransactionService {
 
 	@Autowired

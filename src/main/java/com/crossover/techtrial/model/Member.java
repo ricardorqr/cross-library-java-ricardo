@@ -28,7 +28,7 @@ public class Member implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", length = 100)
 	String name;
 
 	@Column(name = "email", unique = true)

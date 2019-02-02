@@ -65,7 +65,7 @@ public class TransactionController {
 		}
 
 		List<Transaction> tranList = transactionService.findAllTransaction(bookId, memberId);
-		if (!tranList.isEmpty() && tranList.size() >= 5) {
+		if (!tranList.isEmpty() && tranList.size() > 5) {
 			throw new Forbidden403Exception("Member has 5 issues already");
 		}
 

@@ -43,6 +43,14 @@ public class MemberController {
 			throw new Unauthorized401Exception("Email used already");
 		}
 		
+		if (p.getName().matches("^[A-I].*$")) {
+			throw new Unauthorized401Exception("Name must start with an alphabet");
+		}
+		
+		if (p.getName().length() < 2 || p.getName().length() < 100) {
+			throw new Unauthorized401Exception("Name size must be between 2 and 100");
+		}
+		
 		return ResponseEntity.ok(memberService.save(p));
 	}
 
