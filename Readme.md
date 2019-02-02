@@ -5,20 +5,20 @@ Cross-Library is a web application for a local community library and is develope
 
 # Notes
 
-OK Each member should have a valid unique email address. No two members can have the same email address.
-OK Member is not allowed to issue a book which is already issued to someone and should return HTTP Status code 403.
-OK Member trying to issue a book which does not exist in our database, API should return HTTP Status code 404.
-OK After returning the book and completing the transaction by updating date of return, Any subsequent request to return for the same transaction-id should return HTTP Status Code 403. Valid value of Date Of Return field means books are returned.
-OK When issuing a book to a member, the application should update date of issuance and on return, dateOfReturn should be recorded automatically
-OK Frontend application is out of our scope. It is a separate, fully-functioning application handled by another team, so we do not want to modify API signatures.
+* Each member should have a valid unique email address. No two members can have the same email address.
+* Member is not allowed to issue a book which is already issued to someone and should return HTTP Status code 403.
+* Member trying to issue a book which does not exist in our database, API should return HTTP Status code 404.
+* After returning the book and completing the transaction by updating date of return, Any subsequent request to return for the same transaction-id should return HTTP Status Code 403. Valid value of Date Of Return field means books are returned.
+* When issuing a book to a member, the application should update  date of issuance and on return, dateOfReturn should be recorded automatically
+* Frontend application is out of our scope. It is a separate, fully-functioning application handled by another team, so we do not want to modify API signatures.
 
 # Tasks
 
-OK Increase unit test coverage to reach 60%, achieving more than 60% will only consume your valuable time without an extra score.
-OK Cross-Library APIs are developed by the inexperienced developer and contains functional/logical bugs and lacks implementation for many important requirements mentioned above. You need to find those issues and fix them.
-OK Implement a new API which returns top 5 members who completed the maximum number of transactions(issued/returned books) within the given duration. Completed transaction means that date of issuance and date of return are within the search range. API should return member name, a number of books issued/returned in this duration. Signature of API is already defined in code and pagination is not needed.
-OK Implement another new feature where API should reject issuance of more than 5 books at a given time. If a member already has 5 books issued on his name, and try to issue another API should return HTTP Status code 403.
-OK Implement validation on name field in member table to allow names with the length of 2 to 100 and should always start with an alphabet. Please do not add validations on all other fields.
+* Increase unit test coverage to reach 60%, achieving more than 60% will only consume your valuable time without an extra score.
+* Cross-Library APIs are developed by the inexperienced developer and contains functional/logical bugs and lacks implementation for many important requirements mentioned above. You need to find those issues and fix them.
+* Implement a new API which returns top 5 members who completed the maximum number of transactions(issued/returned books) within the given duration. Completed transaction means that date of issuance and date of return are within the search range. API should return member name, a number of books issued/returned in this duration. Signature of API is already defined in code and pagination is not needed.
+* Implement another new feature where API should reject issuance of more than 5 books at a given time. If a member already has 5 books issued on his name, and try to issue another API should return HTTP Status code 403.
+* Implement validation on name field in member table to allow names with the length of 2 to 100 and should always start with an alphabet. Please do not add validations on all other fields.
 
 We'll be evaluating your submission from the following perspectives:
 * Code quality and best practices for new code changes.
