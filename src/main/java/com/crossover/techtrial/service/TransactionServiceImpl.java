@@ -30,24 +30,19 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public Transaction findById(Long transactionId) {
+	public Transaction findTransactionById(Long transactionId) {
 		Optional<Transaction> transaction = transactionRepository.findById(transactionId);
 		return transaction.orElse(null);
 	}
 
 	@Override
-	public Transaction findBookByBookAndMember(Long bookId, Long memberId) {
-		Optional<Transaction> transaction = transactionRepository.findByBookAndMember(bookId, memberId);
-		if (!transaction.isPresent() && transaction.get().getDateOfIssue() == null) {
-			return null;
-		} else {
-			return transaction.get();
-		}
+	public List<Transaction> findAllTransactionByBook(Long bookId) {
+		return transactionRepository.findAllTransactionByBookAndDateOfIssueIsNotNull(bookId);
 	}
 
 	@Override
-	public List<Transaction> findAllTransaction(Long bookId, Long memberId) {
-		return transactionRepository.findAllByBookAndMember(bookId, memberId);
+	public List<Transaction> findAllTransactionByBookAndMember(Long bookId, Long memberId) {
+		return transactionRepository.findfindAllTransactionAllByBookAndMember(bookId, memberId);
 	}
 
 }

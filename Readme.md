@@ -14,7 +14,7 @@ OK Frontend application is out of our scope. It is a separate, fully-functioning
 
 # Tasks
 
-* Increase unit test coverage to reach 60%, achieving more than 60% will only consume your valuable time without an extra score.
+OK Increase unit test coverage to reach 60%, achieving more than 60% will only consume your valuable time without an extra score.
 OK Cross-Library APIs are developed by the inexperienced developer and contains functional/logical bugs and lacks implementation for many important requirements mentioned above. You need to find those issues and fix them.
 OK Implement a new API which returns top 5 members who completed the maximum number of transactions(issued/returned books) within the given duration. Completed transaction means that date of issuance and date of return are within the search range. API should return member name, a number of books issued/returned in this duration. Signature of API is already defined in code and pagination is not needed.
 OK Implement another new feature where API should reject issuance of more than 5 books at a given time. If a member already has 5 books issued on his name, and try to issue another API should return HTTP Status code 403.

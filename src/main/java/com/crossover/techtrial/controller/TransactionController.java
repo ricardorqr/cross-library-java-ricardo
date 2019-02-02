@@ -66,8 +66,8 @@ public class TransactionController {
 		 * Member is not allowed to issue a book which is already issued to someone and
 		 * should return HTTP Status code 403.
 		 */
-		Transaction tran = transactionService.findBookByBookAndMember(bookId, memberId);
-		if (tran == null) {
+		List<Transaction> tranList = transactionService.findAllTransactionByBook(bookId);
+		if (!tranList.isEmpty()) {
 			throw new Forbidden403Exception("Book has issued to a member");
 		}
 
@@ -76,7 +76,7 @@ public class TransactionController {
 		 * If a member already has 5 books issued on his name, 
 		 * and try to issue another API should return HTTP Status code 403.
 		 */
-		List<Transaction> tranList = transactionService.findAllTransaction(bookId, memberId);
+		tranList = transactionService.findAllTransactionByBookAndMember(bookId, memberId);
 		if (!tranList.isEmpty() && tranList.size() > 5) {
 			throw new Forbidden403Exception("Member has 5 issues already");
 		}
@@ -103,7 +103,7 @@ public class TransactionController {
 		 * Any subsequent request to return for the same transaction-id should return HTTP Status Code 403. 
 		 * Valid value of Date Of Return field means books are returned.
 		 */
-		Transaction transaction = transactionService.findById(transactionId);
+		Transaction transaction = transactionService.findTransactionById(transactionId);
 		if (transaction == null) {
 			throw new Forbidden403Exception("Transaction not found");
 		}

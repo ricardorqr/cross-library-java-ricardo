@@ -16,11 +16,11 @@ import com.crossover.techtrial.model.Transaction;
 public interface TransactionService {
 
 	public Transaction save(Transaction transaction);
-	
-	public Transaction findById(Long transactionId);
-	
-	public Transaction findBookByBookAndMember(Long bookId, Long memberId);
 
-	public List<Transaction> findAllTransaction(Long bookId, Long memberId);
+	public Transaction findTransactionById(Long transactionId);
+
+	public List<Transaction> findAllTransactionByBook(Long bookId);
+
+	public List<Transaction> findAllTransactionByBookAndMember(Long bookId, Long memberId);
 
 }
