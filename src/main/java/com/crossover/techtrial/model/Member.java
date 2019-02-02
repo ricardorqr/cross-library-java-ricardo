@@ -28,6 +28,10 @@ public class Member implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
+	/**
+	 * Each member should have a valid unique email address. 
+	 * No two members can have the same email address.
+	 */
 	@Column(name = "name", length = 100)
 	String name;
 

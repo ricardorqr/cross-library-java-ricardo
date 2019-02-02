@@ -4,7 +4,6 @@
 package com.crossover.techtrial.controller;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,19 +37,28 @@ public class MemberController {
 	 */
 	@PostMapping(path = "/api/member")
 	public ResponseEntity<Member> register(@RequestBody Member p) {
+		/**
+		 * Each member should have a valid unique email address. No two members can have
+		 * the same email address.
+		 */
 		Member member = memberService.findEmail(p.getEmail());
 		if (member == null) {
 			throw new Unauthorized401Exception("Email used already");
 		}
-		
+
+		/**
+		 * Implement validation on name field in member table to allow names with the
+		 * length of 2 to 100 and should always start with an alphabet. Please do not
+		 * add validations on all other fields.
+		 */
 		if (p.getName().matches("^[A-I].*$")) {
 			throw new Unauthorized401Exception("Name must start with an alphabet");
 		}
-		
+
 		if (p.getName().length() < 2 || p.getName().length() < 100) {
 			throw new Unauthorized401Exception("Name size must be between 2 and 100");
 		}
-		
+
 		return ResponseEntity.ok(memberService.save(p));
 	}
 
@@ -90,13 +98,7 @@ public class MemberController {
 	public ResponseEntity<List<TopMemberDTO>> getTopMembers(
 			@RequestParam(value = "startTime", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startTime,
 			@RequestParam(value = "endTime", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endTime) {
-		List<TopMemberDTO> topDrivers = new ArrayList<>();
-		/**
-		 * Your Implementation Here.
-		 * 
-		 */
-
-		return ResponseEntity.ok(topDrivers);
+		return ResponseEntity.ok(memberService.getTop5Members(startTime, endTime));
 
 	}
 

@@ -3,7 +3,10 @@
  */
 package com.crossover.techtrial.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import com.crossover.techtrial.dto.TopMemberDTO;
 import com.crossover.techtrial.model.Member;
 
 /**
@@ -21,5 +24,7 @@ public interface MemberService {
 	public List<Member> findAll();
 
 	public Member findEmail(String email);
+
+	public List<TopMemberDTO> getTop5Members(LocalDateTime startTime, LocalDateTime endTime);
 
 }
